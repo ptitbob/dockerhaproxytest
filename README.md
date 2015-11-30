@@ -3,5 +3,5 @@
 J'ai placé un haProxy en front qui reference les serveurs web nginx de mannière a acceder a un serveur deux fois plus qu'a un autre.
 
 ```shell
-curl -i [adresse ip de l'envirronement docker]
+curl -i [adresse ip envirronement docker]
 ```
