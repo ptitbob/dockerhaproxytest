@@ -1,0 +1,26 @@
+nginx1:
+  container_name: nginx1
+  ports:
+    - "83:80"
+  volumes:
+    - ./nginx1/:/usr/share/nginx/html:ro
+  image: nginx
+nginx2:
+  container_name: nginx2
+  ports:
+    - "81:80"
+  volumes:
+    - ./nginx2:/usr/share/nginx/html:ro
+  image: nginx
+proxy:
+  container_name: myproxy
+  image: haproxy:latest
+  volumes:
+    - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+  ports:
+    - 80:80
+    - 9000:9000
+  links:
+    - nginx1
+    - nginx2
+
