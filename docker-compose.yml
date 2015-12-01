@@ -3,7 +3,7 @@ nginx1:
   ports:
     - "83:80"
   volumes:
-    - ./nginx1/:/usr/share/nginx/html:ro
+    - ./nginx1/:/usr/share/nginx/html
   image: nginx
 nginx2:
   container_name: nginx2
@@ -12,9 +12,18 @@ nginx2:
   volumes:
     - ./nginx2:/usr/share/nginx/html:ro
   image: nginx
+
+nginx3:
+  container_name: nginx3
+  ports:
+    - "85:80"
+  volumes:
+    - ./nginx3:/usr/share/nginx/html:ro
+  image: nginx
+
 proxy:
   container_name: myproxy
-  image: haproxy:latest
+  image: stevecrozz/haproxy-lua
   volumes:
     - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
   ports:
@@ -23,4 +32,5 @@ proxy:
   links:
     - nginx1
     - nginx2
+    - nginx3
 
